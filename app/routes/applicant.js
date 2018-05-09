@@ -13,4 +13,12 @@ function postApplicant(req, res) {
   })
 }
 
-module.exports = { postApplicant }
+function getApplicants(req, res) {
+  let query = Applicant.find({})
+  query.exec((err, applicants) => {
+    if (err) res.send(err);
+    res.json(applicants)
+  })
+}
+
+module.exports = { postApplicant, getApplicants }

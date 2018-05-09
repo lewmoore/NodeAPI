@@ -17,7 +17,10 @@ var router = express.Router();
 app.route('/applicant')
   .post(function(req, res) {
     applicant.postApplicant
-  });
+  })
+  .get(function(req, res) {
+    applicant.getApplicants
+  })
 
 app.listen(port)
 console.log("You're on localhost " + port);

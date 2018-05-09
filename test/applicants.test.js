@@ -19,9 +19,19 @@ describe('Applicant', function(){
       .post('/applicant')
       .send(applicant)
       .end((err, res) => {
+        res.should.have.status(200)
         res.body.should.be.a('object')
         res.body.should.have.property('name');
         expect(res.body.name).toEqual('Lewis')
+      })
+    })
+
+    it('should retrieve all applicants', function(){
+      chai.request(server)
+      .get('/applicant')
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.body.should.be.a('array')
       })
     })
   })
