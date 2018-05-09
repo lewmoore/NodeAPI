@@ -6,6 +6,7 @@ let chai = require('chai')
 let chaiHttp = require('chai-http')
 let server = require('../server')
 let should = chai.should()
+let expect = chai.expect
 
 chai.use(chaiHttp)
 
@@ -21,8 +22,8 @@ describe('Applicant', function(){
       .end((err, res) => {
         res.should.have.status(200)
         res.body.should.be.a('object')
-        res.body.should.have.property('name');
-        expect(res.body.name).toEqual('Lewis')
+        res.body.applicant.should.have.property('name');
+        expect(res.body.applicant.name).to.equal('Lewis Moore')
       })
     })
 
