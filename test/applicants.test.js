@@ -12,7 +12,7 @@ chai.use(chaiHttp)
 
 describe('Applicant', function(){
   describe('/POST Applicant', function(){
-    it('should create an applicant', function(){
+    it('should create an applicant with name property', function(){
       let applicant = {
         name: 'Lewis Moore'
       }
@@ -24,6 +24,21 @@ describe('Applicant', function(){
         res.body.should.be.a('object')
         res.body.applicant.should.have.property('name');
         expect(res.body.applicant.name).to.equal('Lewis Moore')
+      })
+    })
+
+    it('should create an applicant with previous country property', function(){
+      let applicant = {
+        name: 'Lewis Moore',
+        previouscountry: 'UK'
+      }
+      chai.request(server)
+      .post('/applicant')
+      .send(applicant)
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.body.applicant.should.have.property('previouscountry')
+        expect(res.body.applicant.previouscountry).to.equal('UK')
       })
     })
 
