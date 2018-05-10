@@ -2,8 +2,6 @@ let mongoose = require('mongoose');
 let Applicant = require('../models/applicant');
 
 function postApplicant(req, res) {
-  console.log("POST FUNCTION")
-  console.log(req.body)
   var newApplicant = new Applicant(req.body);
   newApplicant.save((err, applicant) => {
     if(err) {
