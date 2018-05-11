@@ -51,4 +51,22 @@ describe('Applicant', function(){
       })
     })
   })
+
+  describe('/GET/:id applicant', function(){
+    it('should get an applicant by the given id', function(){
+      let applicant = new Applicant({
+        name: 'John Smith',
+        previouscountry: 'UK'
+      });
+      applicant.save((err, applicant) => {
+        chai.request(server)
+        .get('/applicant/' + applicant.id)
+        .send(applicant)
+        .end((err, res) => {
+          res.should.have.status(200)
+          expect(res.body.applicant._id).to.equal(applicant.id)
+        })
+      })
+    })
+  })
 })

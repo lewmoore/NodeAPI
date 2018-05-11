@@ -19,4 +19,12 @@ function getApplicants(req, res) {
   })
 }
 
-module.exports = { postApplicant, getApplicants }
+function getApplicant(req, res) {
+  Applicant.findById(req.params.id, (err, applicant) => {
+    if (err) res.send(err)
+
+    res.json(applicant)
+  })
+}
+
+module.exports = { postApplicant, getApplicants, getApplicant }
