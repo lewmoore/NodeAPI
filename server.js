@@ -18,6 +18,9 @@ app.route('/applicant')
   .post(applicant.postApplicant)
   .get(applicant.getApplicants);
 
+app.route('/applicant/:id')
+  .get(applicant.getApplicant)
+
 app.listen(port)
 console.log("You're on localhost " + port);
 
