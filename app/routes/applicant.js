@@ -37,4 +37,10 @@ function updateApplicant(req, res) {
   })
 }
 
-module.exports = { postApplicant, getApplicants, getApplicant, updateApplicant }
+function deleteApplicant(req, res) {
+  Applicant.remove({_id: req.params.id}, (err, result) => {
+    res.json({ message: 'Applicant Deleted!', result})
+  })
+}
+
+module.exports = { postApplicant, getApplicants, getApplicant, updateApplicant, deleteApplicant }

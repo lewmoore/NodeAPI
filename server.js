@@ -21,6 +21,7 @@ app.route('/applicant')
 app.route('/applicant/:id')
   .get(applicant.getApplicant)
   .put(applicant.updateApplicant)
+  .delete(applicant.deleteApplicant)
 
 app.listen(port)
 console.log("You're on localhost " + port);

@@ -86,7 +86,26 @@ describe('Applicant', function(){
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.have.property('message').eql('Applicant Updated!')
-          expect(res.body.name).toEqual('Lewis Moore')
+          expect(res.body.applicant.name).to.equal('Lewis Moore')
+        })
+      })
+    })
+  })
+
+  describe('/DELETE/:id applicant', function(){
+    it('should delete an applicant at given id', function(){
+      let applicant = new Applicant({
+        name: 'Lewis Moore',
+        previouscountry: 'United Kingdom'
+      })
+      applicant.save((err, applicant) => {
+        chai.request(server)
+        console.log(applicant)
+        .delete('/applicant/' + applicant.id)
+        .end((err, res) => {
+          console.log(res.body)
+          res.should.have.status(200)
+          expect(res.body.message).to.equal('Applicant Deleted!')
         })
       })
     })
