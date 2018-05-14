@@ -27,4 +27,14 @@ function getApplicant(req, res) {
   })
 }
 
-module.exports = { postApplicant, getApplicants, getApplicant }
+function updateApplicant(req, res) {
+  Applicant.findById({_id: req.params.id}, (err, applicant) => {
+    if(err) res.send(err)
+    Object.assign(applicant, req.body).save((err, applicant) => {
+      if (err) res.send(err)
+      res.json({message: 'Applicant Updated!', applicant})
+    })
+  })
+}
+
+module.exports = { postApplicant, getApplicants, getApplicant, updateApplicant }

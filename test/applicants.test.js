@@ -65,7 +65,25 @@ describe('Applicant', function(){
         .send(applicant)
         .end((err, res) => {
           res.should.have.status(200)
-          expect(res.body.applicant._id).to.equal(applicant.id)
+          expect(res.body._id).to.equal(applicant.id)
+        })
+      })
+    })
+  })
+
+  describe('/PUT/:id applicant', function(){
+    it('Updates a book at given id', function(){
+      let applicant = new Applicant({
+        name: 'Lewis',
+        previouscountry: 'UK'
+      })
+      applicant.save((err, applicant) => {
+        chai.request(server)
+        .put('/applicant/' + applicant.id)
+        .send({name: 'Lewis Moore', previouscountry: 'UK'})
+        .end((err, res) => {
+          res.should.have.status(200)
+          expect(res.body.name).toEqual('Lewis Moore')
         })
       })
     })
