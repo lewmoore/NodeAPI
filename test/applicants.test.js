@@ -85,6 +85,7 @@ describe('Applicant', function(){
         .send({name: 'Lewis Moore', previouscountry: 'UK'})
         .end((err, res) => {
           res.should.have.status(200)
+          res.body.should.have.property('message').eql('Applicant Updated!')
           expect(res.body.name).toEqual('Lewis Moore')
         })
       })
