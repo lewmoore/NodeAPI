@@ -100,7 +100,6 @@ describe('Applicant', function(){
       })
       applicant.save((err, applicant) => {
         chai.request(server)
-        console.log(applicant)
         .delete('/applicant/' + applicant.id)
         .end((err, res) => {
           res.should.have.status(200)
