@@ -14,7 +14,8 @@ describe('Applicant', function(){
   describe('/POST Applicant', function(){
     it('should create an applicant with name property', function(){
       let applicant = {
-        name: 'Lewis Moore'
+        name: 'Lewis Moore',
+        previouscountry: 'UK'
       }
       chai.request(server)
       .post('/applicant')
