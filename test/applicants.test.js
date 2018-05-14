@@ -103,7 +103,6 @@ describe('Applicant', function(){
         console.log(applicant)
         .delete('/applicant/' + applicant.id)
         .end((err, res) => {
-          console.log(res.body)
           res.should.have.status(200)
           expect(res.body.message).to.equal('Applicant Deleted!')
         })
