@@ -42,7 +42,9 @@ describe('Applicant', function(){
         expect(res.body.applicant.previouscountry).to.equal('UK')
       })
     })
+  })
 
+  describe('GET all applicants', function(){
     it('should retrieve all applicants', function(){
       chai.request(server)
       .get('/applicant')
