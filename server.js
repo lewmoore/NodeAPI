@@ -2,8 +2,15 @@ const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
 var mongoose = require('mongoose');
+let config = ('config')
+
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost:27017/applicants')
+
+if (process.env.NODE_ENV === 'test') {
+  mongoose.connect("mongodb://localhost:27017/applicantsTest")
+} else {
+  mongoose.connect("mongodb://localhost:27017/applicants")
+}
 
 let Applicant = require('./app/models/applicant')
 let applicant = require('./app/routes/applicant')
@@ -24,6 +31,6 @@ app.route('/applicant/:id')
   .delete(applicant.deleteApplicant)
 
 app.listen(port)
-console.log("You're on localhost " + port);
+console.log("You're on localhost " + port + " and database " + process.env.NODE_ENV);
 
 module.exports = app

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "export NODE_ENV=dev && node server.js"
   },
   "repository": {
     "type": "git",
