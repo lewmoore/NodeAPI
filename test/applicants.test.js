@@ -20,7 +20,7 @@ describe('Applicant', function(){
   describe('/POST Applicant', function(){
     it('should create an applicant with name property', function(){
       let applicant = {
-        name: 'Lewis Moore',
+        firstname: 'Lewis Moore',
         previouscountry: 'UK'
       }
       chai.request(server)
@@ -29,14 +29,14 @@ describe('Applicant', function(){
       .end((err, res) => {
         res.should.have.status(200)
         res.body.should.be.a('object')
-        res.body.applicant.should.have.property('name');
-        expect(res.body.applicant.name).to.equal('Lewis Moore')
+        res.body.applicant.should.have.property('firstname');
+        expect(res.body.applicant.firstname).to.equal('Lewis Moore')
       })
     })
 
     it('should create an applicant with previous country property', function(){
       let applicant = {
-        name: 'Lewis Moore',
+        firstname: 'Lewis Moore',
         previouscountry: 'UK'
       }
       chai.request(server)
@@ -64,7 +64,7 @@ describe('Applicant', function(){
   describe('/GET/:id applicant', function(){
     it('should get an applicant by the given id', function(){
       let applicant = new Applicant({
-        name: 'John Smith',
+        firstname: 'John Smith',
         previouscountry: 'UK'
       });
       applicant.save((err, applicant) => {
@@ -82,17 +82,17 @@ describe('Applicant', function(){
   describe('/PUT/:id applicant', function(){
     it('Updates a book at given id', function(){
       let applicant = new Applicant({
-        name: 'Lewis',
+        firstname: 'Lewis',
         previouscountry: 'UK'
       })
       applicant.save((err, applicant) => {
         chai.request(server)
         .put('/applicant/' + applicant.id)
-        .send({name: 'Lewis Moore', previouscountry: 'UK'})
+        .send({firstname: 'Lewis Moore', previouscountry: 'UK'})
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.have.property('message').eql('Applicant Updated!')
-          expect(res.body.applicant.name).to.equal('Lewis Moore')
+          expect(res.body.applicant.firstname).to.equal('Lewis Moore')
         })
       })
     })
@@ -101,7 +101,7 @@ describe('Applicant', function(){
   describe('/DELETE/:id applicant', function(){
     it('should delete an applicant at given id', function(){
       let applicant = new Applicant({
-        name: 'Lewis Moore',
+        firstname: 'Lewis Moore',
         previouscountry: 'United Kingdom'
       })
       applicant.save((err, applicant) => {
