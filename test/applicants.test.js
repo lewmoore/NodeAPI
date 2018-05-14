@@ -12,6 +12,11 @@ let expect = chai.expect
 chai.use(chaiHttp)
 
 describe('Applicant', function(){
+  beforeEach(function(done){
+    Applicant.remove({}, (err) => {
+      done()
+    })
+  })
   describe('/POST Applicant', function(){
     it('should create an applicant with name property', function(){
       let applicant = {
