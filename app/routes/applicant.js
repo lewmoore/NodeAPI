@@ -6,8 +6,9 @@ function postApplicant(req, res) {
   newApplicant.save((err, applicant) => {
     if(err) {
       res.send(err)
+    } else {
+      res.json({ message: 'Applicant added', applicant })
     }
-    res.json({ message: 'Applicant added', applicant })
   })
 }
 

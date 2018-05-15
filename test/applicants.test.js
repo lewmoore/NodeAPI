@@ -35,6 +35,21 @@ describe('Applicant', function(){
       })
     })
 
+    it('doesnt create an applicant without firstname', function(){
+      let applicant = {
+        surname: 'Moore',
+        previouscountry: 'UK'
+      }
+      chai.request(server)
+      .post('/applicant')
+      .send(applicant)
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.body.should.have.property('errors')
+        res.body.errors.should.have.property('firstname')
+      })
+    })
+
     it('should create an applicant with previous country property', function(){
       let applicant = {
         firstname: 'Lewis',
