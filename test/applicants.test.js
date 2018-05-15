@@ -80,7 +80,7 @@ describe('Applicant', function(){
   })
 
   describe('/PUT/:id applicant', function(){
-    it('Updates a book at given id', function(){
+    it('Updates a applicant at given id', function(){
       let applicant = new Applicant({
         firstname: 'Lewis',
         previouscountry: 'UK'
