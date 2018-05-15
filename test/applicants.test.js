@@ -12,11 +12,6 @@ let expect = chai.expect
 chai.use(chaiHttp)
 
 describe('Applicant', function(){
-  beforeEach(function(done){
-    Applicant.remove({}, (err) => {
-      done()
-    })
-  })
   describe('/POST Applicant', function(){
     it('should create an applicant with name property', function(){
       let applicant = {
@@ -92,6 +87,25 @@ describe('Applicant', function(){
         .end((err, res) => {
           res.should.have.status(200)
           expect(res.body._id).to.equal(applicant.id)
+        })
+      })
+    })
+  })
+
+  describe('/GET/firstname applicant', function(){
+    it('should get applicants given first name', function(){
+      let applicant = new Applicant({
+        firstname: 'Lily',
+        surname: 'Glasson',
+        previouscountry: 'Greece'
+      })
+      applicant.save((err, applicant) => {
+        chai.request(server)
+        .get('/applicant/name/' + applicant.firstname)
+        .send(applicant)
+        .end((err, res) => {
+          res.should.have.status(200)
+          expect(res.body[0].firstname).to.equal(applicant.firstname)
         })
       })
     })

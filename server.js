@@ -26,9 +26,12 @@ app.route('/applicant')
   .get(applicant.getApplicants);
 
 app.route('/applicant/:id')
-  .get(applicant.getApplicant)
+  .get(applicant.getApplicantById)
   .put(applicant.updateApplicant)
   .delete(applicant.deleteApplicant)
+
+app.route('/applicant/name/:firstname')
+  .get(applicant.getApplicantByFirstname)
 
 app.listen(port)
 console.log("You're on localhost " + port + " and database " + process.env.NODE_ENV);

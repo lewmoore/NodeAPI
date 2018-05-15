@@ -20,8 +20,16 @@ function getApplicants(req, res) {
   })
 }
 
-function getApplicant(req, res) {
+function getApplicantById(req, res) {
   Applicant.findById(req.params.id, (err, applicant) => {
+    if (err) res.send(err)
+
+    res.json(applicant)
+  })
+}
+
+function getApplicantByFirstname(req, res) {
+  Applicant.find({ firstname: req.params.firstname}, (err, applicant) => {
     if (err) res.send(err)
 
     res.json(applicant)
@@ -44,4 +52,4 @@ function deleteApplicant(req, res) {
   })
 }
 
-module.exports = { postApplicant, getApplicants, getApplicant, updateApplicant, deleteApplicant }
+module.exports = { postApplicant, getApplicants, getApplicantById, getApplicantByFirstname, updateApplicant, deleteApplicant }
